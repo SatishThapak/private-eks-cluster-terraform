@@ -36,7 +36,35 @@ project_name  = "Demo"
 environment   = "dev"
 region        = "us-east-1"
 instance_type = "t3.medium"
-ami_id        = "ami-xxxxxxxxxxxxxxx"
+ami_id        = "ami-0b6c6ebed2801a5cb"
+availability_zone="us-east-1"
+cidr_block = "10.0.0.0/16"
+cluster_name = "dev"
+iam_role = "user_satish"
+instance_name = "jump_host"
+vpc_name = "main"
+
+public_subnets = {
+  "public-1a" = {
+    cidr = "10.0.1.0/24"
+    az   = "us-east-1a"
+  }
+  "public-1b" = {
+    cidr = "10.0.2.0/24"
+    az   = "us-east-1b"
+  }
+}
+
+private_subnets = {
+  "private-1a" = {
+    cidr = "10.0.3.0/24"
+    az   = "us-east-1a"
+  }
+  "private-1b" = {
+    cidr = "10.0.4.0/24"
+    az   = "us-east-1b"
+  }
+}
 
 3. Initialize Terraform
 terraform init
