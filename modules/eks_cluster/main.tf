@@ -12,7 +12,7 @@ resource "aws_eks_cluster" "main" {
   }
 }
 
-resource "aws_eks_node_group" "default" {
+resource "aws_eks_node_group" "primary" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = "${var.project_name}-${var.environment}-node-group"
   node_role_arn   = var.worker_role_arn

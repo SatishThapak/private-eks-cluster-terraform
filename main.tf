@@ -8,14 +8,12 @@ module "vpc" {
   environment     = var.environment
 }
 
-
 module "security_group" {
   source       = "./modules/security_groups"
   vpc_id       = module.vpc.vpc_id
   project_name = var.project_name
   environment  = var.environment
 }
-
 
 module "iam_roles" {
   source       = "./modules/iam_roles"
@@ -41,14 +39,16 @@ module "aws_jump_host" {
 }
 
 module "eks_cluster" {
-  source            = "./modules/eks_cluster"
-  project_name      = var.project_name
-  environment       = var.environment
-  cluster_role_arn  = module.iam_roles.eks_master_role_arn
-  worker_role_arn   = module.iam_roles.eks_worker_role_arn
-  subnet_ids        = module.vpc.private_subnet_ids
-  instance_type     = "t2.medium"
-  desired_size      = 2
-  min_size          = 1
-  max_size          = 3
+  source           = "./modules/eks_cluster"
+  project_name     = var.project_name
+  environment      = var.environment
+  cluster_role_arn = module.iam_roles.eks_master_role_arn
+  worker_role_arn  = module.iam_roles.eks_worker_role_arn
+  subnet_ids       = module.vpc.private_subnet_ids
+  instance_type    = "t2.medium"
+  desired_size     = 2
+  min_size         = 1
+  max_size         = 3
 }
+
+
